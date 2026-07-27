@@ -1,4 +1,11 @@
 <launch>
-    <node pkg="autoware_mini_tutorial" name="publisher" type="publisher.py" output="screen" required="true"/>
+    <node pkg="autoware_mini_tutorial" name="publisher1" type="publisher.py" output="screen" required="true" >
+         <param name="message" value="Hello ROSS!" />
+         <param name="rate" value="2.0" />
+    </node>
+    <node pkg="autoware_mini_tutorial" name="publisher2" type="publisher.py" output="screen" required="true" >
+         <param name="message" value="Hello BOSS!" />
+         <param name="rate" value="5.0" />
+    </node>
     <node pkg="autoware_mini_tutorial" name="subscriber" type="subscriber.py" output="screen" required="true"/>
 </launch>
