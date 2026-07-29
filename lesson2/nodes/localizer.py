@@ -23,9 +23,6 @@ class Localizer:
         self.crs_utm = CRS.from_epsg(25835)
         self.utm_projection = Proj(self.crs_utm)
 
-        # TODO 2: Create a coordinate transformer using self.crs_wgs84 and self.crs_utm.
-        #         Use Transformer.from_crs(). Then transform the origin point (utm_origin_lat,
-        #         utm_origin_lon) and store results as self.origin_x and self.origin_y.
         self.transformer = Transformer.from_crs(self.crs_wgs84, self.crs_utm)
         self.origin_x, self.origin_y = self.transformer.transform(utm_origin_lat, utm_origin_lon)
         
@@ -39,7 +36,7 @@ class Localizer:
 
     def transform_coordinates(self, msg):
         
-        # Get loc
+        #Get loc
         x, y = self.transformer.transform(msg.latitude,msg.longitude)
         x -= self.origin_x
         y -= self.origin_y
