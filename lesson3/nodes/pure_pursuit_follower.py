@@ -50,7 +50,7 @@ class PurePursuitFollower:
             # Extract velocity values at waypoints
             velocities = np.array([w.speed for w in msg.waypoints])
             # Create interpolator (experiment with `bounds_error` and `fill_value` to create logical behavior when the ego vehicle is before the first waypoint or after the last one)
-            distance_to_velocity_interpolator = interp1d(distances, velocities, kind='linear',fill_value = (velocities[0],velocities[-1]))
+            distance_to_velocity_interpolator = interp1d(distances, velocities, kind='linear',fill_value = (velocities[0],velocities[-1]),bounds_error=False)
 
         with self.lock:
             self.path_linestring = path_linestring
@@ -76,11 +76,6 @@ class PurePursuitFollower:
                 lookahead_point.x - current_pose.x)
             # Calculate alpha
             alpha = lookahead_heading - heading
-            # Wrap alpha
-            if alpha > np.pi/2:
-                alpha -= np.pi
-            if alpha < - np.pi/2:
-                alpha += np.pi 
             # Recalculate the actual lookahead distance (direct distance between points)
             ld = distance(current_pose, lookahead_point)
             # Calculate steering angle using the Pure Pursuit formula
@@ -95,7 +90,7 @@ class PurePursuitFollower:
         vehicle_cmd.header.frame_id = "base_link"
         vehicle_cmd.steering_angle = steering_angle
         vehicle_cmd.speed = linear_velocity
-        vehicle_cmd.acceleration = 0
+        vehicle_cmd.acceleration = linear_acceleration
         self.vehicle_cmd_pub.publish(vehicle_cmd)
 
     def run(self):
