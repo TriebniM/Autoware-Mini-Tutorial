@@ -70,7 +70,9 @@ class Localizer:
         t.header.stamp = msg.header.stamp
         t.header.frame_id = "map"
         t.child_frame_id = "base_link"
-        t.transform.translation = current_pose.pose.position
+        t.transform.translation.x = current_pose.pose.position.x
+        t.transform.translation.y = current_pose.pose.position.y
+        t.transform.translation.z = current_pose.pose.position.z
         t.transform.rotation = orientation
         self.br.sendTransform(t)
 
