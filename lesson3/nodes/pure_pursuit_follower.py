@@ -57,7 +57,9 @@ class PurePursuitFollower:
             self.distance_to_velocity_interpolator = distance_to_velocity_interpolator
 
     def current_pose_callback(self, msg):
-        if (self.path_linestring is None) or (self.distance_to_velocity_interpolator is None):
+        interpolator = self.distance_to_velocity_interpolator
+
+        if (self.path_linestring is None) or (interpolator is None):
             steering_angle = 0.0
             linear_velocity = 0.0
             linear_acceleration = -3.0
@@ -80,8 +82,9 @@ class PurePursuitFollower:
             ld = distance(current_pose, lookahead_point)
             # Calculate steering angle using the Pure Pursuit formula
             steering_angle = np.arctan((2*self.wheel_base*np.sin(alpha))/ld)
-            # Calculate linear velocity 
-            linear_velocity = float(self.distance_to_velocity_interpolator(d_ego_from_path_start))
+            # Calculate linear velocity '
+            
+            linear_velocity = float(interpolator(d_ego_from_path_start))
             linear_acceleration = 0.0
 
         # Create and publish a VehicleCommand message with constant steering angle and velocity for testing.
