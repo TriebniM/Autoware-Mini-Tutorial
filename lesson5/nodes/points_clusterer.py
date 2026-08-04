@@ -32,7 +32,7 @@ class PointsClusterer:
         data = numpify(msg)
         points = structured_to_unstructured(data[['x', 'y', 'z']], dtype=np.float32)
         labels = self.clusterer.fit_predict(points)
-        if np.count_nonzero(points) == 0:
+        if np.size(points) == 0:
             return 
 
         # Publish the clustered points as a PointCloud2 message.
@@ -52,7 +52,7 @@ class PointsClusterer:
 
         # Create the message using msgify, set the correct header and publish
         msg_to_publish = msgify(PointCloud2,data)
-        msg_to_publish.header.stamp = rospy.Time.now()
+        msg_to_publish.header.stamp = msg.header.stamp
         msg_to_publish.header.frame_id = msg.header.frame_id
         self.clustered_pub.publish(msg_to_publish)
 
