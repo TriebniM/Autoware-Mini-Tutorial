@@ -77,7 +77,7 @@ class SimpleSpeedPlanner:
             # Project collision points onto the local path to get distances
             collision_points_shapely = shapely.points(structured_to_unstructured(collision_points[['x', 'y', 'z']]))
             collision_point_distances = np.array([local_path_linestring.project(cp) for cp in collision_points_shapely])
-
+            stopping_point_distances = (collision_point_distances - collision_points["distance_to_stop"])
             # Calculate target velocity and modify the local path waypoint speeds.
             collision_point_braking_distances = np.array(
                 [cpd-self.distance_to_car_front for i,cpd in enumerate(collision_point_distances)])
@@ -104,10 +104,10 @@ class SimpleSpeedPlanner:
             target_object_speed = collision_point_speeds[cp_min_velo]
             collision_point_braking_distance = collision_point_braking_distances[cp_min_velo]
             collision_point_category = collision_points[cp_min_velo]["category"]
-            stopping_point_distance = target_distances[cp_min_velo]
+            stopping_point_distance = stopping_point_distances[cp_min_velo]
             #target_velocity = target_distances[cp_min_velo]
 
-
+            
             # Publishing the modified local path goes 
             path = Path()
             path.header = local_path_msg.header
