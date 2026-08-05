@@ -83,11 +83,6 @@ class SimpleSpeedPlanner:
             #           v = sqrt(2 * default_deceleration * distance)
             #         - Find the minimum target velocity
             #         - Overwrite waypoint speeds: wp.speed = min(target_velocity, wp.speed)
-            calculated_target_velocities = np.array(
-                [math.sqrt(2*self.default_deceleration*cpd) for cpd in collision_point_distances])
-            min_velocity = np.min(calculated_target_velocities)
-            for wp in local_path_msg.waypoints:
-                wp.speed = min(min_velocity, wp.speed)
 
             # TODO 3: Add braking safety distance.
             #         - Subtract distance_to_car_front from collision_point_distances
@@ -99,11 +94,6 @@ class SimpleSpeedPlanner:
             target_distances = np.array(
                 [cpbd-collision_points[i][6] for i,cpbd in enumerate(collision_point_braking_distances)])
             
-            calculated_target_velocities = np.array(
-                [math.sqrt(2*self.default_deceleration*cpd) for cpd in target_distances])
-            min_velocity = np.min(calculated_target_velocities)
-            for wp in local_path_msg.waypoints:
-                wp.speed = min(min_velocity, wp.speed)
             # TODO 4: Calculate collision point speed.
             #         - For each collision point, get the path heading at that distance
             #           using get_heading_at_distance()
@@ -116,7 +106,7 @@ class SimpleSpeedPlanner:
             # TODO 6: Modify target velocity with reaction time.
             #         - Subtract braking_reaction_time * abs(collision_point_speeds)
             #           from target distances
-            target_distances = np.maximum(0,collision_point_braking_distance - self.braking_reaction_time*np.abs(collision_point_speeds))
+            target_distances = np.maximum(0,target_distances - self.braking_reaction_time*np.abs(collision_point_speeds))
             # TODO 5: Account for collision point speed in target velocity.
             #         - Use full formula: v = max(0, approaching_speed + sqrt(max(0, v0^2 + 2*a*s)))
             #           where approaching_speed = min(v0, 0) handles objects moving toward us
@@ -127,26 +117,27 @@ class SimpleSpeedPlanner:
                 approaching_speeds + np.sqrt(np.maximum(0,
                     collision_point_speeds ** 2 + 2 * self.default_deceleration * target_distances)))
             cp_min_velo = np.argmin(calculated_target_velocities)
-            target_object_distance = collision_point_distances[cp_min_velo]
+            min_velocity = np.min(calculated_target_velocities)
+            for wp in local_path_msg.waypoints:
+                            wp.speed = min(min_velocity, wp.speed)
+            #target_object_distance = collision_point_distances[cp_min_velo]
             target_object_speed = collision_point_speeds[cp_min_velo]
             collision_point_braking_distance = collision_point_braking_distances[cp_min_velo]
-            collision_point_category = collision_points[i][8]
+            collision_point_category = collision_points[cp_min_velo]["category"]
             stopping_point_distance = target_distances[cp_min_velo]
-            target_velocity = target_distances[cp_min_velo]
+            #target_velocity = target_distances[cp_min_velo]
             # Publishing the modified local path goes below all the TODOs.
             # In TODO 2, create the modified Path message here and pass it to
             # self.publish_local_path() together with the calculated metadata;
             # the later TODOs only refine these values.
-            target_object_distance = collision_point_distances[np.argmin(calculated_target_velocities)]
-            collision_point_category = collision_points[np.argmin(calculated_target_velocities)]["category"]
 
             path = Path()
             path.header = local_path_msg.header
             path.waypoints = local_path_msg.waypoints
             self.publish_local_path(path,
-                                    target_object_distance=target_object_distance,
+                                    target_object_distance=collision_point_braking_distance,
                                     target_object_speed=target_object_speed,
-                                    stopping_point_distance=target_object_distance,
+                                    stopping_point_distance=stopping_point_distance,
                                     collision_point_category=collision_point_category,
                                     is_blocked=True)
 

@@ -93,16 +93,24 @@ class SimpleCollisionChecker:
                 object_polygon = shapely.Polygon([(cvxh[i],cvxh[i+1]) for i in range(0,len(cvxh),3)])
                 if local_path_buffer.intersects(object_polygon):
                     intersection = local_path_buffer.intersection(object_polygon)
-                    intersection_points = list(intersection.exterior.coords)
+                    intersection_points = shapely.get_coordinates(intersection)
                     # Calculate the intersection geometry and create a collision point from each
                     # of its coordinates, filling in the rest of the DTYPE fields from the object
                     # metadata.
                     for x, y in intersection_points:
                         category = 3
-                        if (obj.velocity.x>0 or obj.velocity.y>0):
+                        object_speed = math.sqrt(obj.velocity.x**2 + obj.velocity.y**2)
+                        if object_speed > self.stopped_speed_limit:
                             category = 4
                         collision_points = np.append(collision_points, np.array([
-                            (x,y,0,obj.velocity.x,obj.velocity.y,0,self.braking_safety_distance_obstacle,np.inf,category
+                            (x,
+                             y,
+                             obj.centroid.z,
+                             obj.velocity.x,
+                             obj.velocity.y,
+                             obj.velocity.z,
+                             self.braking_safety_distance_obstacle,
+                             np.inf,category
                             )], dtype=DTYPE))
 
         # TODO 7: Add goal point as collision point.
@@ -113,7 +121,15 @@ class SimpleCollisionChecker:
             goal_point_shapely = shapely.Point(goal_point.x, goal_point.y)
             if local_path_buffer.intersects(goal_point_shapely.buffer(0.1)):
                 collision_points = np.append(collision_points, np.array(
-                    [(goal_point.x,goal_point.y,0,0,0,0,self.braking_safety_distance_goal,np.inf,1
+                    [(goal_point.x,
+                      goal_point.y,
+                      goal_point.z,
+                      0,
+                      0,
+                      0,
+                      self.braking_safety_distance_goal,
+                      np.inf,
+                      1
                     )], dtype=DTYPE))
         # TODO 9 (lesson 7): add stop line collision points for red traffic lights
 
