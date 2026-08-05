@@ -77,12 +77,7 @@ class SimpleCollisionChecker:
             self.collision_points_pub.publish(collision_points_msg)
             return
 
-        # TODO 1: Create obstacle collision points.
-        #         - Create a Shapely LineString from the local path waypoints
-        #         - Buffer it with safety_box_width / 2 (cap_style="flat")
-        #         - If detected_objects is not None and not empty, iterate over them
-        #           and add collision points from their intersections with the buffered path
-        #           to the collision_points array
+        # Create obstacle collision points.
         local_path_linestring = LineString([(wp.position.x,wp.position.y) for wp in msg.waypoints])
         local_path_buffer = local_path_linestring.buffer(self.safety_box_width / 2, cap_style="flat")
         shapely.prepare(local_path_buffer)
@@ -113,10 +108,7 @@ class SimpleCollisionChecker:
                              np.inf,category
                             )], dtype=DTYPE))
 
-        # TODO 7: Add goal point as collision point.
-        #         - Check if goal_point is within the buffered local path
-        #         - If so, append it as a collision point with category=1, zero velocity,
-        #           distance_to_stop=braking_safety_distance_goal
+        # Add goal point as collision point.
         if goal_point is not None:
             goal_point_shapely = shapely.Point(goal_point.x, goal_point.y)
             if local_path_buffer.intersects(goal_point_shapely.buffer(0.1)):
