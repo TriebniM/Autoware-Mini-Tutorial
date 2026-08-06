@@ -165,6 +165,7 @@
         <arg name="carla_port"          value="$(arg carla_port)" />
         <arg name="use_manual_control"  value="$(arg use_manual_control)" />
         <arg name="generate_traffic"    value="$(arg generate_traffic)" />
+        <arg name="use_scenario_runnner" value="true" />
     </include>
 
     <!-- Third-person view camera attached to the ego for the RViz simulation view

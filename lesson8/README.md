@@ -45,7 +45,7 @@ When your stack is running, VSE automatically detects your ego vehicle and hands
 
 ##### Instructions
 1. With `lesson8.launch` running, start VSE and open the `tartu_demo` map. When VSE first launches, it will ask to select the agent's behavior logic. Navigate to `autoware_mini/nodes/platform/carla/` and select `carla_minimal_agent.py`.
-2. Open the scenario (`Scenario` menu -> `Open`): `shared/scenarios/tartu_demo_route_simplified.json` from the tutorial folder
+2. Open the scenario (`Scenario` menu -> `Open`): `shared/data/scenarios/tartu_demo_route_simplified.json` from the tutorial folder
 3. Press **Play**. Note: if your machine has less than 10 Gb VRAM slowdowns are expected.
 
 ##### Validation
