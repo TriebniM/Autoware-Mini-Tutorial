@@ -32,7 +32,7 @@ The university lab PCs already have the Autoware Mini workspace set up at `~/aut
 2. Clone your fork into the catkin workspace:
    ```bash
    cd ~/autoware_mini_ws/src
-   git clone git@github.com:<your_github_username>/autoware_mini_tutorial.git
+   git clone git@github.com:<your_github_username>/Autoware-Mini-Tutorial.git autoware_mini_tutorial
    ```
 3. Follow the instructions in [Lesson 1](lesson1/README.md) to get started.
 
