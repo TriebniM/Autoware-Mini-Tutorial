@@ -1,7 +1,7 @@
 {
   "vehicles": [
     {
-      "id": 400,
+      "id": 516,
       "type": "walker.pedestrian.0002",
       "location": {
         "x": 1.3005754947662354,
@@ -115,7 +115,7 @@
       }
     },
     {
-      "id": 401,
+      "id": 517,
       "type": "walker.pedestrian.0003",
       "location": {
         "x": 21.595863342285156,
@@ -187,7 +187,7 @@
       }
     },
     {
-      "id": 402,
+      "id": 518,
       "type": "walker.pedestrian.0004",
       "location": {
         "x": 6.034723281860352,
@@ -259,7 +259,7 @@
       }
     },
     {
-      "id": 403,
+      "id": 519,
       "type": "vehicle.ford.mustang",
       "location": {
         "x": 85.2236099243164,
@@ -781,7 +781,7 @@
       }
     },
     {
-      "id": 404,
+      "id": 520,
       "type": "vehicle.audi.tt",
       "location": {
         "x": 183.13973999023438,
@@ -1247,7 +1247,7 @@
       }
     },
     {
-      "id": 405,
+      "id": 521,
       "type": "walker.pedestrian.0005",
       "location": {
         "x": 189.62815856933594,
@@ -1333,7 +1333,7 @@
       }
     },
     {
-      "id": 406,
+      "id": 522,
       "type": "walker.pedestrian.0006",
       "location": {
         "x": 217.03860473632812,
@@ -1419,7 +1419,7 @@
       }
     },
     {
-      "id": 407,
+      "id": 523,
       "type": "vehicle.vespa.zx125",
       "location": {
         "x": 156.41830444335938,
@@ -1675,7 +1675,7 @@
       }
     },
     {
-      "id": 408,
+      "id": 524,
       "type": "walker.pedestrian.0007",
       "location": {
         "x": 121.18360900878906,
@@ -1733,7 +1733,7 @@
       }
     },
     {
-      "id": 409,
+      "id": 525,
       "type": "walker.pedestrian.0008",
       "location": {
         "x": 136.440185546875,
@@ -1791,7 +1791,7 @@
       }
     },
     {
-      "id": 410,
+      "id": 526,
       "type": "walker.pedestrian.0009",
       "location": {
         "x": 117.13321685791016,
@@ -1849,7 +1849,7 @@
       }
     },
     {
-      "id": 411,
+      "id": 527,
       "type": "vehicle.mitsubishi.fusorosa",
       "location": {
         "x": 59.50773620605469,
@@ -2217,7 +2217,7 @@
       }
     },
     {
-      "id": 412,
+      "id": 528,
       "type": "vehicle.yamaha.yzf",
       "location": {
         "x": -10.475961685180664,
@@ -2669,7 +2669,7 @@
       }
     },
     {
-      "id": 413,
+      "id": 529,
       "type": "vehicle.kawasaki.ninja",
       "location": {
         "x": -22.26517105102539,
@@ -3079,7 +3079,7 @@
       }
     },
     {
-      "id": 414,
+      "id": 530,
       "type": "vehicle.mercedes.coupe",
       "location": {
         "x": -166.0546875,
@@ -3979,7 +3979,7 @@
       }
     },
     {
-      "id": 415,
+      "id": 531,
       "type": "walker.pedestrian.0010",
       "location": {
         "x": -36.6060791015625,
@@ -4065,7 +4065,7 @@
       }
     },
     {
-      "id": 416,
+      "id": 532,
       "type": "walker.pedestrian.0011",
       "location": {
         "x": -73.30115509033203,
@@ -4151,7 +4151,7 @@
       }
     },
     {
-      "id": 417,
+      "id": 533,
       "type": "walker.pedestrian.0012",
       "location": {
         "x": 32.10724639892578,
@@ -4237,7 +4237,7 @@
       }
     },
     {
-      "id": 418,
+      "id": 534,
       "type": "walker.pedestrian.0013",
       "location": {
         "x": -38.586036682128906,
@@ -4309,7 +4309,7 @@
       }
     },
     {
-      "id": 419,
+      "id": 535,
       "type": "walker.pedestrian.0014",
       "location": {
         "x": -29.156574249267578,
@@ -4395,7 +4395,7 @@
       }
     },
     {
-      "id": 420,
+      "id": 536,
       "type": "walker.pedestrian.0015",
       "location": {
         "x": 6.653878211975098,
@@ -4467,7 +4467,7 @@
       }
     },
     {
-      "id": 421,
+      "id": 537,
       "type": "vehicle.volkswagen.t2_2021",
       "location": {
         "x": -17.35911750793457,
@@ -4723,7 +4723,7 @@
       }
     },
     {
-      "id": 422,
+      "id": 538,
       "type": "vehicle.harley-davidson.low_rider",
       "location": {
         "x": -18.16583251953125,
@@ -5133,7 +5133,7 @@
       }
     },
     {
-      "id": 423,
+      "id": 539,
       "type": "vehicle.mitsubishi.fusorosa",
       "location": {
         "x": 153.467529296875,
@@ -5907,7 +5907,7 @@
       }
     },
     {
-      "id": 424,
+      "id": 540,
       "type": "walker.pedestrian.0041",
       "location": {
         "x": -5.935770034790039,
@@ -5979,7 +5979,7 @@
       }
     },
     {
-      "id": 425,
+      "id": 541,
       "type": "vehicle.tesla.cybertruck",
       "location": {
         "x": 36.72895812988281,
@@ -6738,14 +6738,14 @@
       }
     }
   ],
-  "timestamp": 1784741683.2397232,
+  "timestamp": 1786008878.8952034,
   "map_name": "tartu_demo",
   "ego_vehicle": {
     "type": "vehicle.lexus.utlexus",
     "location": {
       "x": -27.27976417541504,
       "y": 50.947967529296875,
-      "z": 35.615169525146484
+      "z": 35.71516799926758
     },
     "rotation": {
       "pitch": 0.0,
@@ -6759,13 +6759,27 @@
     "max_lat_acc": 3.0,
     "waypoints": [
       {
+        "index": 1,
+        "location": {
+          "x": -26.544111251831055,
+          "y": -113.77318572998047,
+          "z": 35.626644134521484
+        },
+        "yaw": -4.193173885345459,
+        "speed_km_h": 40.0,
+        "speed_deviation_km_h": 0,
+        "idle_time_s": 0.0,
+        "auto_generated": false,
+        "is_destination": false
+      },
+      {
         "index": "destination",
         "location": {
-          "x": -23.43064308166504,
-          "y": -113.74683380126953,
-          "z": 39.41937255859375
+          "x": -20.526933670043945,
+          "y": -113.46392059326172,
+          "z": 35.323394775390625
         },
-        "yaw": 4.546377182006836,
+        "yaw": 8.0235013961792,
         "speed_km_h": 40.0,
         "speed_deviation_km_h": 0,
         "idle_time_s": 0.0,
@@ -6859,7 +6873,7 @@
       },
       "radius": 6.0,
       "ids_live": [
-        102
+        332
       ],
       "ids_reference": [
         22
@@ -6912,8 +6926,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        122,
-        132
+        352,
+        362
       ],
       "ids_reference": [
         42,
@@ -6947,8 +6961,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        124,
-        125
+        354,
+        355
       ],
       "ids_reference": [
         44,
@@ -6982,10 +6996,10 @@
       },
       "radius": 6.0,
       "ids_live": [
-        175,
-        176,
-        177,
-        182
+        405,
+        406,
+        407,
+        412
       ],
       "ids_reference": [
         95,
@@ -7056,8 +7070,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        226,
-        227
+        456,
+        457
       ],
       "ids_reference": [
         150,
@@ -7156,7 +7170,7 @@
       },
       "radius": 6.0,
       "ids_live": [
-        88
+        318
       ],
       "ids_reference": [
         65
@@ -7189,8 +7203,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        89,
-        90
+        319,
+        320
       ],
       "ids_reference": [
         66,
@@ -7229,8 +7243,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        103,
-        104
+        333,
+        334
       ],
       "ids_reference": [
         80,
@@ -7274,7 +7288,7 @@
       },
       "radius": 6.0,
       "ids_live": [
-        114
+        344
       ],
       "ids_reference": [
         91
@@ -7307,8 +7321,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        115,
-        116
+        345,
+        346
       ],
       "ids_reference": [
         92,
@@ -7352,8 +7366,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        188,
-        189
+        418,
+        419
       ],
       "ids_reference": [
         165,
@@ -7387,8 +7401,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        190,
-        191
+        420,
+        421
       ],
       "ids_reference": [
         167,
@@ -7422,8 +7436,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        74,
-        76
+        304,
+        306
       ],
       "ids_reference": [
         51,
@@ -7457,8 +7471,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        78,
-        80
+        308,
+        310
       ],
       "ids_reference": [
         55,
@@ -7492,9 +7506,9 @@
       },
       "radius": 6.0,
       "ids_live": [
-        209,
-        212,
-        225
+        439,
+        442,
+        455
       ],
       "ids_reference": [
         186,
@@ -7534,8 +7548,8 @@
       },
       "radius": 6.0,
       "ids_live": [
-        192,
-        231
+        422,
+        461
       ],
       "ids_reference": [
         449,
@@ -7574,9 +7588,9 @@
       },
       "radius": 6.0,
       "ids_live": [
-        75,
-        77,
-        79
+        305,
+        307,
+        309
       ],
       "ids_reference": [
         332,
