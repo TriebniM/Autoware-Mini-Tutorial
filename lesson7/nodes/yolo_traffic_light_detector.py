@@ -173,7 +173,12 @@ class YoloTrafficLightDetector:
 
             # Extract the transform between transform_to_frame and transform_from_frame
             try:
-                transform = self.tf_buffer.lookup_transform(transform_to_frame,transform_from_frame,image_time_stamp)
+                transform = self.tf_buffer.lookup_transform(
+                    transform_to_frame,
+                    transform_from_frame,
+                    image_time_stamp,
+                    rospy.Duration(self.transform_timeout)
+                )
             except (tf2_ros.TransformException, rospy.ROSTimeMovedBackwardsException) as e:
                 rospy.logwarn("%s - %s", rospy.get_name(), e)
                 return
@@ -207,8 +212,14 @@ class YoloTrafficLightDetector:
                     # Find camera pixel coordinates 
                     point_camera = do_transform_point(PointStamped(point=point_map), transform).point
                     u, v = self.camera_model.project3dToPixel((point_camera.x, point_camera.y, point_camera.z))
+                    # Data validity check in u, v and z
                     if point_camera.z < 0:
                         break 
+                    if not (
+                        0 <= u < self.camera_model.width
+                        and 0 <= v < self.camera_model.height
+                    ):
+                        break
                     # convert the extent in meters to extent in pixels
                     extent_x_px = self.camera_model.fx() * self.roi_width_extent / point_camera.z
                     extent_y_px = self.camera_model.fy() * self.roi_height_extent / point_camera.z

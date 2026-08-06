@@ -65,11 +65,27 @@ Your framework from the previous lessons is a simplified one. Remember all limit
 4. Fill in the three descriptions below: what happens in the scenario, how your framework fails, and what change to the framework would fix it. Add screenshots if needed.
 5. Commit and push everything, and be ready to demonstrate your failure cases at the practice session
 
-##### Failure case 1
 ...
+##### Failure case 1 – Entering a Lane Without Checking Cross Traffic
+Scenario
+The ego vehicle enters a lane from a side road or merge point while another vehicle is approaching from the left on the main road.
+Observed framework failure
+The planning framework begins the merge without continuously monitoring cross traffic from the left. As a result, the approaching vehicle is detected too late (or not considered after the merge decision has been made), creating an unsafe situation.
+Suggested framework improvement
+The planner should continuously monitor vehicles approaching from conflicting directions until the merge is completed. If a vehicle enters a collision path during the maneuver, the ego vehicle should delay or abort the merge and wait until the lane is clear.
 
-##### Failure case 2
-...
+##### Failure case 2 – Pedestrian Crossing Outside a Marked Crosswalk
+Scenario
+A pedestrian crosses the road at an unmarked location rather than at a designated pedestrian crossing.
+Observed framework failure
+The vehicle continues at its planned speed because the pedestrian is outside a recognized crosswalk. Although the pedestrian occupies the vehicle’s path, the planner does not reduce speed early enough to maintain a safe distance.
+Suggested framework improvement
+The planner should treat pedestrians as dynamic obstacles regardless of whether they are using a marked crossing. When a pedestrian is predicted to cross the driving lane, the vehicle should slow down or stop until the path is clear.
 
-##### Failure case 3
-...
+##### Failure case 3 – Red Traffic Light Missed Due to Missing Right-Side Signal
+Scenario
+The ego vehicle approaches an intersection where the traffic light for the right lane is unavailable or not detected, while the adjacent left lane displays a red light. Both lanes allow vehicles to continue straight.
+Observed framework failure
+The framework relies only on the traffic light assigned to the current lane. When the right-lane signal is unavailable, it ignores the adjacent left-lane signal and incorrectly proceeds through the intersection despite the red light.
+Suggested framework improvement
+When the lane-specific traffic light is unavailable, the planner should use nearby traffic lights controlling the same movement (e.g., adjacent straight-through lanes) as a fallback. This redundancy would improve robustness against temporary perception failures or missing detections and reduce the risk of running a red light.
