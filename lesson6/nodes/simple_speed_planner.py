@@ -100,12 +100,12 @@ class SimpleSpeedPlanner:
             min_velocity = np.min(calculated_target_velocities)
             for wp in local_path_msg.waypoints:
                             wp.speed = min(min_velocity, wp.speed)
-            #target_object_distance = collision_point_distances[cp_min_velo]
+
             target_object_speed = collision_point_speeds[cp_min_velo]
             collision_point_braking_distance = collision_point_braking_distances[cp_min_velo]
             collision_point_category = collision_points[cp_min_velo]["category"]
             stopping_point_distance = stopping_point_distances[cp_min_velo]
-            #target_velocity = target_distances[cp_min_velo]
+
 
             
             # Publishing the modified local path goes 
