@@ -78,19 +78,16 @@ class SimpleSpeedPlanner:
             collision_points_shapely = shapely.points(structured_to_unstructured(collision_points[['x', 'y', 'z']]))
             collision_point_distances = np.array([local_path_linestring.project(cp) for cp in collision_points_shapely])
             stopping_point_distances = (collision_point_distances - collision_points["distance_to_stop"])
-            # Calculate target velocity and modify the local path waypoint speeds.
-            collision_point_braking_distances = np.array(
-                [cpd-self.distance_to_car_front for i,cpd in enumerate(collision_point_distances)])
             
-            target_distances = np.array(
-                [cpbd-collision_points[i][6] for i,cpbd in enumerate(collision_point_braking_distances)])
+            # Calculate target velocity and modify the local path waypoint speeds.
+            target_distances = collision_point_distances - self.distance_to_car_front - collision_points["distance_to_stop"]
             
             # Calculate collision point speed.
             collision_point_path_headings = [self.get_heading_at_distance(local_path_linestring, d) for d in collision_point_distances]
             collision_point_speeds = np.array([self.project_vector_to_heading(heading, Vector3(vx, vy, vz))
                                          for heading, (vx, vy, vz) in zip(collision_point_path_headings, collision_points[['vx', 'vy', 'vz']])])
             # Modify target velocity with reaction time.
-            target_distances = np.maximum(0,target_distances - self.braking_reaction_time*np.abs(collision_point_speeds))
+            target_distances = (target_distances - self.braking_reaction_time*np.abs(collision_point_speeds))
             # Account for collision point speed in target velocity.
             approaching_speeds = np.minimum(collision_point_speeds, 0)
             calculated_target_velocities = np.maximum(0,
@@ -102,7 +99,7 @@ class SimpleSpeedPlanner:
                             wp.speed = min(min_velocity, wp.speed)
 
             target_object_speed = collision_point_speeds[cp_min_velo]
-            collision_point_braking_distance = collision_point_braking_distances[cp_min_velo]
+            collision_point_braking_distance = target_distances[cp_min_velo]
             collision_point_category = collision_points[cp_min_velo]["category"]
             stopping_point_distance = stopping_point_distances[cp_min_velo]
 
